@@ -1,3 +1,8 @@
+package Chess;
+
+
+import Chess.ChessPiece;
+
 /*
  * Rook.java
  * Falak Daud

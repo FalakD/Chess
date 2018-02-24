@@ -1,3 +1,5 @@
+package Chess;
+
 /*
  * Bishop.java
  * Falak Daud

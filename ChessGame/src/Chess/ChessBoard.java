@@ -1,3 +1,5 @@
+package Chess;
+
 /*
  * ChessBoard.java
  * Falak Daud
