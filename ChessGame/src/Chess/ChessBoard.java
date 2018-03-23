@@ -12,14 +12,14 @@ package Chess;
  */
 public class ChessBoard {
     int[][] board; //row by column
-    boolean[][] occupiedSquares;
+    int[][] occupiedSquares; // 1 is white, 2 is black, 0 is unoccupied
     
     /**
      * constructs new empty standard chessboard.
      */
     public ChessBoard(){
         board = new int[8][8];
-        occupiedSquares = new boolean[8][8];
+        occupiedSquares = new int[8][8];
     }
     
     /**
@@ -29,7 +29,7 @@ public class ChessBoard {
      * @return true if square is occupied, else false
      */
     public boolean isOccupied(int row, int col){
-        return occupiedSquares[row][col];
+        return occupiedSquares[row][col] != 0;
     }
     
     /**
@@ -37,8 +37,22 @@ public class ChessBoard {
      * @param row the row of the square to mark
      * @param col the col of the square to mark
      */
-    public void markOccupied(int row, int col){
-        occupiedSquares[row][col] = true;
+    public void markOccupied(int row, int col, boolean isWhite){
+        if (isWhite) {
+            occupiedSquares[row][col] = 1;
+        } else {
+            occupiedSquares[row][col] = 2;
+        }
+    }
+    
+    /**
+     * returns the color of the piece at the given position.
+     * @param row the row of the piece
+     * @param col the column of the piece
+     * @return true if the piece is white, else false
+     */
+    public boolean getPieceColor(int row, int col) {
+        return occupiedSquares[row][col] == 1;
     }
     
     /**
@@ -47,6 +61,6 @@ public class ChessBoard {
      * @param col the col of the square to mark
      */
     public void markUnoccupied(int row, int col){
-        occupiedSquares[row][col] = false;
+        occupiedSquares[row][col] = 0;
     }
 }

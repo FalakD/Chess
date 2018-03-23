@@ -41,16 +41,24 @@ public class ChessBoardTest {
      * Test of isOccupied method, of class ChessBoard.
      */
     @Test
-    public void testIsOccupied() {
-        System.out.println("isOccupied");
+    public void testIsOccupiedFalse() {
         int row = 0;
         int col = 0;
         ChessBoard instance = new ChessBoard();
         boolean expResult = false;
         boolean result = instance.isOccupied(row, col);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    }
+    
+    @Test
+    public void testIsOccupiedTrue() {
+        int row = 4;
+        int col = 4;
+        ChessBoard instance = new ChessBoard();
+        boolean expResult = true;
+        instance.markOccupied(row, col, true);
+        boolean result = instance.isOccupied(row, col);
+        assertEquals(expResult, result);
     }
 
     /**
@@ -61,10 +69,26 @@ public class ChessBoardTest {
         System.out.println("markOccupied");
         int row = 0;
         int col = 0;
+        boolean isWhite = false;
         ChessBoard instance = new ChessBoard();
-        instance.markOccupied(row, col);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        instance.markOccupied(row, col, isWhite);
+        assertTrue(instance.isOccupied(row, col));
+        assertFalse(instance.getPieceColor(row, col));
+    }
+
+    /**
+     * Test of getPieceColor method, of class ChessBoard.
+     */
+    @Test
+    public void testGetPieceColor() {
+        System.out.println("getPieceColor");
+        int row = 0;
+        int col = 0;
+        ChessBoard instance = new ChessBoard();
+        boolean expResult = false;
+        instance.markOccupied(row, col, expResult);
+        boolean result = instance.getPieceColor(row, col);
+        assertEquals(expResult, result);
     }
 
     /**
@@ -76,9 +100,9 @@ public class ChessBoardTest {
         int row = 0;
         int col = 0;
         ChessBoard instance = new ChessBoard();
+        instance.markOccupied(row, col, true);
         instance.markUnoccupied(row, col);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        assertFalse(instance.isOccupied(row, col));
     }
     
 }

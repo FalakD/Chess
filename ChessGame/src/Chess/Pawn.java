@@ -13,7 +13,7 @@ import Chess.ChessPiece;
  *
  * @author Falak
  */
-public class Pawn implements ChessPiece{
+public class Pawn implements ChessPiece {
     private int currRow;
     private int currCol;
     private final boolean isWhite;
@@ -25,7 +25,7 @@ public class Pawn implements ChessPiece{
      * @param col the initial starting col of the piece
      * @param white whether or not Pawn is on white team
      */
-    public Pawn(int row, int col, boolean white){
+    public Pawn(int row, int col, boolean white) {
         currRow = row;
         currCol = col;
         isWhite = white;
@@ -36,7 +36,7 @@ public class Pawn implements ChessPiece{
      * @return int row
      */
     @Override
-    public int getRow(){
+    public int getRow() {
         return currRow;
     }
     
@@ -45,7 +45,7 @@ public class Pawn implements ChessPiece{
      * @return int col
      */
     @Override
-    public int getCol(){
+    public int getCol() {
         return currCol;
     }
     
@@ -55,7 +55,7 @@ public class Pawn implements ChessPiece{
      * @throws IllegalArgumentException if n is greater than 8 or less than 0.
      */
     @Override
-    public void setRow(int n){
+    public void setRow(int n) {
         if(n > 8 || n < 1){
             throw new IllegalArgumentException("Pawn cannot be moved to row " + n);
         }
@@ -68,11 +68,18 @@ public class Pawn implements ChessPiece{
      * @throws IllegalArgumentException if n is greater than 8 or less than 0.
      */
     @Override
-    public void setCol(int n){
+    public void setCol(int n) {
         if(n > 8 || n < 1){
             throw new IllegalArgumentException("Pawn cannot be moved to col " + n);
         }
         currCol = n;
+    }
+    
+    /**
+     * mark the Pawn as completing its first move.
+     */
+    public void markMoved() {
+        firstMove = false;
     }
     
     /**
@@ -89,7 +96,7 @@ public class Pawn implements ChessPiece{
      * @return true if Pawn is dead, else false.
      */
     @Override
-    public boolean isDead(){
+    public boolean isDead() {
         return currRow == -1;
     }
     
@@ -98,7 +105,7 @@ public class Pawn implements ChessPiece{
      * @return true if its on the white team, else false
      */
     @Override
-    public boolean getTeam(){
+    public boolean getTeam() {
         return isWhite;
     }
     
@@ -109,18 +116,18 @@ public class Pawn implements ChessPiece{
      * @return true if move is legal, else false
      */
     @Override
-    public boolean isLegalMove(int row, int col){
-        if(row > 8 || row < 1 || col < 1 || col > 8){
+    public boolean isLegalMove(int row, int col) {
+        if(row > 8 || row < 1 || col < 1 || col > 8) {
             return false;
         }
         int diffCol = col - currCol;
         int diffRow = row - currRow;
         if (isWhite){
-            if(diffCol == 2 && diffRow == 0){
+            if(diffCol == 2 && diffRow == 0) {
                 return firstMove;
             } else {
                 if(diffCol == 1){
-                    if(diffRow > -2 && diffRow < 2){
+                    if(diffRow > -2 && diffRow < 2) {
                         return true;
                     }
                     return false;
@@ -128,11 +135,11 @@ public class Pawn implements ChessPiece{
                 return false;
             }
         } else {
-            if(diffCol == -2 && diffRow == 0){
+            if(diffCol == -2 && diffRow == 0) {
                 return firstMove;
             } else {
-                if(diffCol == -1){
-                    if(diffRow > -2 && diffRow < 2){
+                if(diffCol == -1) {
+                    if(diffRow > -2 && diffRow < 2) {
                         return true;
                     }
                     return false;
